@@ -22,6 +22,9 @@ module.exports = {
                 'title',
                 'content',
                 'time'
+            ],
+            order: [
+                [ 'time', 'DESC' ]
             ]
         });
 

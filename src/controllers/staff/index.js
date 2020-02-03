@@ -36,7 +36,9 @@ module.exports = {
                     ],
                     attributes: [
                         'name',
-                        'display_name'
+                        'display_name',
+                        'twitter_access_token',
+                        'twitter_token_secret'
                     ]
                 }
             ],

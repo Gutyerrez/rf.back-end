@@ -30,7 +30,7 @@ module.exports = {
         const result = await website_changelog.findAll({
             where: {
                 time: {
-                    [Op.lte]: date1.getTime()
+                    [ Op.lte ]: date1.getTime()
                 }
             },
             order: [
