@@ -1,8 +1,9 @@
 const express = require('express');
 const routes = express.Router();
 
-const notices = require('../controllers/notices');
+const notices = require('../controllers/notice');
 const staff = require('../controllers/staff');
+const changelog = require("../controllers/changelog");
 
 /**
  * NOTICES route
@@ -24,5 +25,13 @@ routes.route('/staff')
     .get(staff.index)
     .post(staff.store)
     .delete(staff.destroy);
+
+routes.route('/changelog')
+    .get(changelog.index)
+    .post(changelog.store)
+    .put(changelog.update)
+    .delete(changelog.destroy);
+
+routes.get('/changelog/:date', changelog.show);
 
 module.exports = routes;
