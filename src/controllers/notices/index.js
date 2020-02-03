@@ -1,10 +1,29 @@
 const {
-    website_notices
+    website_notice,
+    server_user
 } = require('../../models');
 
 module.exports = {
     index: async (request, response) => {
-        const result = await website_notices.findAll();
+        const result = await website_notice.findAll({
+            include: [
+                {
+                    model: server_user,
+                    as: 'user',
+                    attributes: [
+                        'id',
+                        'name',
+                        'display_name'
+                    ]
+                }
+            ],
+            attributes: [
+                'id',
+                'title',
+                'content',
+                'time'
+            ]
+        });
 
         return response.json(result);
     },
@@ -13,10 +32,24 @@ module.exports = {
             id
         } = request.params;
 
-        const result = await website_notices.findOne({
-            where: {
-                id
-            }
+        const result = await website_notice.findByPk(id, {
+            include: [
+                {
+                    model: server_user,
+                    as: 'user',
+                    attributes: [
+                        'id',
+                        'name',
+                        'display_name'
+                    ]
+                }
+            ],
+            attributes: [
+                'id',
+                'title',
+                'content',
+                'time'
+            ]
         });
 
         return response.json(result);
@@ -26,7 +59,7 @@ module.exports = {
             id
         } = request.body;
 
-        const result = await website_notices.destroy({
+        const result = await website_notice.destroy({
             where: {
                 id
             }
@@ -42,7 +75,7 @@ module.exports = {
             time
         } = request.body;
 
-        const notice = await website_notices.create({
+        const notice = await website_notice.create({
             title,
             content,
             user_id,
@@ -58,7 +91,7 @@ module.exports = {
             content
         } = request.body;
 
-        const notice = await website_notices.update({
+        const notice = await website_notice.update({
             title,
             content
         }, {

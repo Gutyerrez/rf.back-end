@@ -1,5 +1,7 @@
+'use strict';
+
 module.exports = (sequelize, DataTypes) => {
-    const Notice = sequelize.define('website_notices', {
+    const Notice = sequelize.define('website_notice', {
         id: {
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -22,9 +24,14 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.BIGINT,
             allowNull: false
         }
-    }, {
-        timestamps: false
-    })
+    });
+
+    Notice.associate = (models) => {
+        Notice.belongsTo(models.server_user, {
+            foreignKey: 'id',
+            as: 'user'
+        });
+    };
 
     return Notice;
 }
