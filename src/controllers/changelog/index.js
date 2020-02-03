@@ -8,7 +8,20 @@ const {
 
 module.exports = {
     index: async (request, response) => {
-        const result = await website_changelog.findAll();
+        const {
+            title
+        } = request.query;
+
+        const where = title ? {
+            where: {
+                title: {
+                    [Op.startsWith]: title ? title : ''
+                }
+            }
+        } : undefined;
+
+
+        const result = await website_changelog.findAll(where);
 
         return response.json(result);
     },
@@ -30,11 +43,11 @@ module.exports = {
         const result = await website_changelog.findAll({
             where: {
                 time: {
-                    [ Op.lte ]: date1.getTime()
+                    [Op.lte]: date1.getTime()
                 }
             },
             order: [
-                [ 'time', 'DESC' ]
+                ['time', 'DESC']
             ]
         });
 
@@ -56,7 +69,7 @@ module.exports = {
 
         return response.json(result);
     },
-    destroy:  async (request, response) => {
+    destroy: async (request, response) => {
         const {
             id
         } = request.body;
