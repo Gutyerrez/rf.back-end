@@ -50,6 +50,8 @@ routes.get('/group', group.index);
  * USER route
  */
 
-routes.get('/user', user.show);
+routes.route('/user')
+    .get(user.show)
+    .post(user.store);
 
 module.exports = routes;

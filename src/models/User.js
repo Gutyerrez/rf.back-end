@@ -59,7 +59,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         last_lobby_id: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: true
         },
         language_id: {
             type: DataTypes.INTEGER,
