@@ -17,8 +17,15 @@ module.exports = {
                 title: {
                     [Op.startsWith]: title ? title : ''
                 }
-            }
-        } : undefined;
+            },
+            order: [
+                ['time', 'DESC']
+            ]
+        } : {
+            order: [
+                ['time', 'DESC']
+            ]
+        };
 
 
         const result = await website_changelog.findAll(where);

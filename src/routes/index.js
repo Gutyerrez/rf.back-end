@@ -5,6 +5,7 @@ const notices = require('../controllers/notice');
 const staff = require('../controllers/staff');
 const changelog = require('../controllers/changelog');
 const group = require('../controllers/group');
+const user = require('../controllers/user');
 
 /**
  * NOTICES route
@@ -44,5 +45,11 @@ routes.get('/changelog/:date', changelog.show);
  */
 
 routes.get('/group', group.index);
+
+/**
+ * USER route
+ */
+
+routes.get('/user', user.show);
 
 module.exports = routes;
