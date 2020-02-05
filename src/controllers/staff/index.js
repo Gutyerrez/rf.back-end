@@ -35,6 +35,7 @@ module.exports = {
                         }
                     ],
                     attributes: [
+                        'id',
                         'name',
                         'display_name',
                         'twitter_access_token',
