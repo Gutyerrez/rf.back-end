@@ -76,6 +76,10 @@ module.exports = (sequelize, DataTypes) => {
             foreignKey: 'user_id',
             as: 'groups'
         });
+        User.hasMany(models.server_punishment, {
+            foreignKey: 'user_id',
+            as: 'user'
+        });
     };
 
     return User;

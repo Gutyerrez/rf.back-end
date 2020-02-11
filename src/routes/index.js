@@ -6,6 +6,7 @@ const staff = require('../controllers/staff');
 const changelog = require('../controllers/changelog');
 const group = require('../controllers/group');
 const user = require('../controllers/user');
+const punishment = require('../controllers/punishment');
 
 /**
  * NOTICES route
@@ -52,6 +53,9 @@ routes.get('/group', group.index);
 
 routes.route('/user')
     .get(user.show)
-    .post(user.store);
+    .post(user.store)
+    .put(user.update);
+
+routes.get('/punishment', punishment.index);
 
 module.exports = routes;

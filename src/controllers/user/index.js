@@ -8,10 +8,11 @@ module.exports = {
     show: async (request, response) => {
         const {
             username,
-            email
+            email,
+            id
         } = request.query;
 
-        const where = username ? { name: username.toLowerCase() } : { email }
+        const where = id ? { id } : username ? { name: username.toLowerCase() } : { email };
 
         const result = await server_user.findOne({
             where
@@ -41,5 +42,29 @@ module.exports = {
         });
 
         return response.json(user);
+    },
+    update: async (request, response) => {
+        const {
+            id,
+            email,
+            password
+        } = request.body;
+
+        const user = await server_user.findOne({
+            where: {
+                id
+            }
+        });
+
+        const result = await server_user.update({
+            email: email === null ? user.email : email,
+            password: password === null ? user.password : password
+        }, {
+            where: {
+                id
+            }
+        });
+
+        return response.json(result);
     }
 }
