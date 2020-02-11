@@ -7,7 +7,23 @@ const {
 
 module.exports = {
     index: async (request, response) => {
+        const {
+            user_id,
+            page
+        } = request.query;
+
+        const limit = user_id ? 9999 : 10;
+        const offset = user_id ? 0 : page * limit;
+
+        const where = user_id ? { user_id } : { };
+
         const result = await server_punishment.findAll({
+            where,
+            offset,
+            limit,
+            order: [
+                ['time', 'DESC']
+            ],
             include: [
                 {
                     model: server_user,
