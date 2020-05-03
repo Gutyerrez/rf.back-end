@@ -43,6 +43,9 @@ module.exports = {
                     ]
                 }
             ],
+            order: [
+                ['user_id', 'ASC']
+            ],
             attributes: [
                 'id'
             ]
