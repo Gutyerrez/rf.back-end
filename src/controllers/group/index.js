@@ -11,7 +11,7 @@ module.exports = {
         const result = await server_group.findAll({
             where: {
                 id: {
-                    [ Op.lte ]: 6
+                    [ Op.lte ]: 5
                 }
             }
         });
